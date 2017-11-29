@@ -10,9 +10,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
-import dao.HibernateUtil;
 import dao.CursoDao;
 import dao.CursoDaoImpl;
+import dao.HibernateUtil;
 import entity.Curso;
 import util.Generator;
 

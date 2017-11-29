@@ -10,9 +10,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
-import dao.HibernateUtil;
 import dao.AvaliacaoDao;
 import dao.AvaliacaoDaoImpl;
+import dao.HibernateUtil;
 import entity.Avaliacao;
 import util.Generator;
 

@@ -19,7 +19,7 @@ public class CursoDaoImpl extends BaseDaoImpl<Curso, Long> implements CursoDao {
 
     @Override
     public List<Curso> listAll(Session session) throws HibernateException {
-        Query resultQuery = session.createQuery("from Curso");
+        Query resultQuery = session.createQuery("from Curso where ativo = 1");
         return resultQuery.list();
     }
 
