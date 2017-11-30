@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'tcs'
+version = '0.0.1-SNAPSHOT'
+
+description = """projeto-tcs"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations { providedCompile }
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.41'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.6.Final'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0.1'
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.19'
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.19'
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.19'
+    runtime group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.19'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+}
+
+sourceSets.main.compileClasspath += configurations.providedCompile
+sourceSets.test.compileClasspath += configurations.providedCompile
+sourceSets.test.runtimeClasspath += configurations.providedCompile
