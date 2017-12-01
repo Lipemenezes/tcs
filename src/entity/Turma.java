@@ -35,6 +35,9 @@ public class Turma {
 	@Column(length = 100, nullable = true)
 	private String turno;
 
+	@Column
+	private boolean ativo;
+
 	@ManyToOne
 	@JoinColumn(name = "disciplina_id")
 	private Disciplina disciplina;
@@ -46,8 +49,8 @@ public class Turma {
 	@ManyToOne
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
-	
-	@ManyToMany(mappedBy="turmas")
+
+	@ManyToMany(mappedBy = "turmas")
 	private List<Usuario> usuarios;
 
 	public Turma() {
@@ -55,7 +58,7 @@ public class Turma {
 	}
 
 	public Turma(Long id, String nome, String semestre, String turno, Disciplina disciplina, Usuario professor,
-			Curso curso) {
+			Curso curso, boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -64,6 +67,7 @@ public class Turma {
 		this.disciplina = disciplina;
 		this.professor = professor;
 		this.curso = curso;
+		this.ativo = ativo;
 	}
 
 	public Long getId() {
@@ -120,6 +124,22 @@ public class Turma {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@Override

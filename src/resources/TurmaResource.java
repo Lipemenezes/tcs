@@ -15,60 +15,60 @@ import javax.ws.rs.core.MediaType;
 
 import org.hibernate.Session;
 
-import dao.CursoDaoImpl;
 import dao.HibernateUtil;
-import entity.Curso;
+import dao.TurmaDaoImpl;
+import entity.Turma;
 
-@Path("/cursos")
-public class CursoResource {
+@Path("/turmas")
+public class TurmaResource {
 
-	private CursoDaoImpl cursoDaoImpl;
+	private TurmaDaoImpl turmaDaoImpl;
 	private Session session;
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public GenericEntity<List<Curso>> listaTodos(){
+	public GenericEntity<List<Turma>> listaTodos(){
 		session = HibernateUtil.openSession();
-        cursoDaoImpl = new CursoDaoImpl();
-        List<Curso> list = cursoDaoImpl.listAll(session);
+        turmaDaoImpl = new TurmaDaoImpl();
+        List<Turma> list = turmaDaoImpl.listAll(session);
 		session.close();
-		return new GenericEntity<List<Curso>>(list) {};
+		return new GenericEntity<List<Turma>>(list) {};
 	}
 	
 	@GET
-	@Path("/curso")
+	@Path("/turma")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public GenericEntity<Curso> pegaPorId(@QueryParam("id") Long id){
+	public GenericEntity<Turma> pegaPorId(@QueryParam("id") Long id){
 		session = HibernateUtil.openSession();
-        cursoDaoImpl = new CursoDaoImpl();
-        Curso curso = cursoDaoImpl.searchById(new Long(id), session);
+        turmaDaoImpl = new TurmaDaoImpl();
+        Turma turma = turmaDaoImpl.searchById(new Long(id), session);
 		session.close();
-		return new GenericEntity<Curso>(curso) {};
+		return new GenericEntity<Turma>(turma) {};
 	}
 	
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes(MediaType.APPLICATION_JSON)
-	public GenericEntity<Curso> cria(Curso curso){
+	public GenericEntity<Turma> cria(Turma turma){
 		session = HibernateUtil.openSession();
-        cursoDaoImpl = new CursoDaoImpl();
-        cursoDaoImpl.saveOrUpdate(curso, session);
+        turmaDaoImpl = new TurmaDaoImpl();
+        turmaDaoImpl.saveOrUpdate(turma, session);
 		session.close();
-		return new GenericEntity<Curso>(curso) {};
+		return new GenericEntity<Turma>(turma) {};
 	}
 	
 	@DELETE
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean deleta(Curso curso){
+	public boolean deleta(Turma turma){
 		session = HibernateUtil.openSession();
-        cursoDaoImpl = new CursoDaoImpl();
+        turmaDaoImpl = new TurmaDaoImpl();
         
-        cursoDaoImpl.delete(curso, session);
-        curso = cursoDaoImpl.searchById(curso.getId(), session);
+        turmaDaoImpl.delete(turma, session);
+        turma = turmaDaoImpl.searchById(turma.getId(), session);
 		session.close();
 		
-		if (curso != null)
+		if (turma != null)
 			return false;
 		
 		return true;
@@ -77,12 +77,12 @@ public class CursoResource {
 	@PUT
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes(MediaType.APPLICATION_JSON)
-	public GenericEntity<Curso> atualiza(Curso curso){
+	public GenericEntity<Turma> atualiza(Turma turma){
 		session = HibernateUtil.openSession();
-        cursoDaoImpl = new CursoDaoImpl();
-        cursoDaoImpl.saveOrUpdate(curso, session);
+        turmaDaoImpl = new TurmaDaoImpl();
+        turmaDaoImpl.saveOrUpdate(turma, session);
 		session.close();
-		return new GenericEntity<Curso>(curso) {};
+		return new GenericEntity<Turma>(turma) {};
 	}
 
 }

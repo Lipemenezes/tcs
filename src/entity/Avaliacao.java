@@ -40,18 +40,22 @@ public class Avaliacao {
 	@Column
 	private Long duracao;
 
+	@Column
+	private boolean ativo;
+
 	@ManyToOne
 	@JoinColumn(name = "turma_id")
 	private Turma turma;
-	
-	@ManyToMany(mappedBy="avaliacoes")
+
+	@ManyToMany(mappedBy = "avaliacoes")
 	private List<Usuario> usuarios;
-	
+
 	public Avaliacao() {
 		super();
 	}
 
-	public Avaliacao(Long id, String nome, Date dataCadastro, Date dataEntrega, Long duracao, Turma turma) {
+	public Avaliacao(Long id, String nome, Date dataCadastro, Date dataEntrega, Long duracao, Turma turma,
+			boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -59,6 +63,7 @@ public class Avaliacao {
 		this.dataEntrega = dataEntrega;
 		this.duracao = duracao;
 		this.turma = turma;
+		this.ativo = ativo;
 	}
 
 	public Long getId() {
@@ -107,6 +112,22 @@ public class Avaliacao {
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@Override
