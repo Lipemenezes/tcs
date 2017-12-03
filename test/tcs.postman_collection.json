@@ -1,0 +1,1001 @@
+{
+	"info": {
+		"name": "tcs",
+		"_postman_id": "8385a78e-ce00-4141-8774-78f9c9593344",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "curso",
+			"description": "",
+			"item": [
+				{
+					"name": "pega todos cursos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/cursos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"cursos",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "criar curso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"teste cria22\",\r\n\t\"acronimo\": \"cria22\",\r\n\t\"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/cursos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"cursos",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "pega um curso pelo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/cursos/curso?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"cursos",
+								"curso"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "apagar curso",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/cursos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"cursos",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "atualiza curso",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 7,\r\n\t\"nome\": \"teste atualiza\",\r\n\t\"acronimo\": \"atualiza\",\r\n\t\"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/cursos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"cursos",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "avaliacao",
+			"description": "",
+			"item": [
+				{
+					"name": "pega todas avalaicoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/avaliacoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"avaliacoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "criar avaliacao",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"dataCadastro\": \"2017-12-03\",\r\n\t\"dataEntrega\": \"2017-12-03\",\r\n\t\"duracao\": 120,\r\n\t\"nome\": \"avaliacao teste webservice\",\r\n\t\"ativo\": true,\r\n\t\"turma\": {\r\n\t\t\"id\": 7\r\n\t}\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"avaliacoes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "pega um avaliacao pelo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/avaliacoes/avaliacao?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"avaliacoes",
+								"avaliacao"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "apagar avaliacao",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/avaliacoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"avaliacoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "atualiza avaliacao",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 8,\r\n\t\"nome\": \"teste atualiza\",\r\n\t\"ativo\": true,\r\n\t\"duracao\": 10,\r\n\t\"turma\": {\r\n\t\t\"id\": 7\r\n\t},\r\n\t\"dataEntrega\": \"2017-03-12\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/avaliacoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"avaliacoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "disciplina",
+			"description": "",
+			"item": [
+				{
+					"name": "pega todas disciplinas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/disciplinas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"disciplinas",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "criar disciplina",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"acronimo\": \"ads\",\r\n\t\"nome\": \"a d sistemas\",\r\n\t\"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/disciplinas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"disciplinas"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "pega disciplina pelo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/disciplinas/disciplina?id=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"disciplinas",
+								"disciplina"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "apagar disciplina",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 5\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/disciplinas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"disciplinas",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "atualiza disciplina",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 11,\r\n\t\"nome\": \"teste atualiza\",\r\n\t\"acronimo\": \"atualiza\",\r\n\t\"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/disciplinas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"disciplinas",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "permissao",
+			"description": "",
+			"item": [
+				{
+					"name": "pega todas permissoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "criar permissao",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"professor\",\r\n\t\"permissoes\": \"sla\",\r\n\t\"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "pega permissao pelo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes/permissao?id=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes",
+								"permissao"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "apagar permissao",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 4\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "atualiza permissao",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 10,\r\n\t\"nome\": \"teste atualiza\",\r\n\t\"permissoes\": \"atualiza\",\r\n\t\"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "turma",
+			"description": "",
+			"item": [
+				{
+					"name": "pega todas turmas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "criar turmas",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"professor\",\r\n\t\"permissoes\": \"sla\",\r\n\t\"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "pega turma pelo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes/permissao?id=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes",
+								"permissao"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "apagar turma",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 4\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "atualiza turma",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 10,\r\n\t\"nome\": \"teste atualiza\",\r\n\t\"permissoes\": \"atualiza\",\r\n\t\"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/permissoes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"permissoes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario",
+			"description": "",
+			"item": [
+				{
+					"name": "pega todos usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/turmas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"turmas",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "criar usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"felipe\",\r\n\t\"sobrenome\": \"menezes\",\r\n\t\"email\": \"felipe@test\",\r\n\t\"senha\": \"123456\",\r\n\t\"cpf\": \"123.456.188.11\",\r\n\t\"dataCadastro\": \"2017-12-03\",\r\n\t\"ativo\": true,\r\n\t\"permissao\": {\r\n\t\t\"id\": 10\r\n\t},\r\n\t\"turmas\": [\r\n\t\t{\r\n\t\t\t\"id\": 7\r\n\t\t}, \r\n\t\t{\r\n\t\t\t\"id\": 13\t\r\n\t\t}\r\n\t]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"usuarios"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "pega usuario pelo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/usuarios/usuario?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"usuarios",
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "apagar usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"usuarios",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "atualiza usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 1,\r\n\t\"nome\": \"teste atualiza\",\r\n\t\"ativo\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/projeto-tcs/resources/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projeto-tcs",
+								"resources",
+								"usuarios",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
