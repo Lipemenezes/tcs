@@ -35,6 +35,7 @@ public class CursoDaoImplTest {
         session = HibernateUtil.openSession();
         curso = new Curso();
         curso.setNome(Generator.randomString() + "_save");
+        curso.setAtivo(true);
         cursoDao.saveOrUpdate(curso, session);
         session.close();
 

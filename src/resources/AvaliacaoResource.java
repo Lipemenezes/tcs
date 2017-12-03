@@ -15,8 +15,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.hibernate.Session;
 
-import dao.HibernateUtil;
 import dao.AvaliacaoDaoImpl;
+import dao.HibernateUtil;
 import entity.Avaliacao;
 
 @Path("/avaliacoes")
@@ -24,65 +24,69 @@ public class AvaliacaoResource {
 
 	private AvaliacaoDaoImpl avaliacaoDaoImpl;
 	private Session session;
-	
+
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public GenericEntity<List<Avaliacao>> listaTodos(){
+	public GenericEntity<List<Avaliacao>> listaTodos() {
 		session = HibernateUtil.openSession();
-        avaliacaoDaoImpl = new AvaliacaoDaoImpl();
-        List<Avaliacao> list = avaliacaoDaoImpl.listAll(session);
+		avaliacaoDaoImpl = new AvaliacaoDaoImpl();
+		List<Avaliacao> list = avaliacaoDaoImpl.listAll(session);
 		session.close();
-		return new GenericEntity<List<Avaliacao>>(list) {};
+		return new GenericEntity<List<Avaliacao>>(list) {
+		};
 	}
-	
+
 	@GET
 	@Path("/avaliacao")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public GenericEntity<Avaliacao> pegaPorId(@QueryParam("id") Long id){
+	public GenericEntity<Avaliacao> pegaPorId(@QueryParam("id") Long id) {
 		session = HibernateUtil.openSession();
-        avaliacaoDaoImpl = new AvaliacaoDaoImpl();
-        Avaliacao avaliacao = avaliacaoDaoImpl.searchById(new Long(id), session);
+		avaliacaoDaoImpl = new AvaliacaoDaoImpl();
+		Avaliacao avaliacao = avaliacaoDaoImpl.searchById(new Long(id), session);
 		session.close();
-		return new GenericEntity<Avaliacao>(avaliacao) {};
+		return new GenericEntity<Avaliacao>(avaliacao) {
+		};
 	}
-	
+
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes(MediaType.APPLICATION_JSON)
-	public GenericEntity<Avaliacao> cria(Avaliacao avaliacao){
+	public GenericEntity<Avaliacao> cria(Avaliacao avaliacao) {
 		session = HibernateUtil.openSession();
-        avaliacaoDaoImpl = new AvaliacaoDaoImpl();
-        avaliacaoDaoImpl.saveOrUpdate(avaliacao, session);
+		avaliacaoDaoImpl = new AvaliacaoDaoImpl();
+		avaliacaoDaoImpl.saveOrUpdate(avaliacao, session);
 		session.close();
-		return new GenericEntity<Avaliacao>(avaliacao) {};
+		return new GenericEntity<Avaliacao>(avaliacao) {
+		};
 	}
-	
+
 	@DELETE
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean deleta(Avaliacao avaliacao){
+	public boolean deleta(Avaliacao avaliacao) {
 		session = HibernateUtil.openSession();
-        avaliacaoDaoImpl = new AvaliacaoDaoImpl();
-        
-        avaliacaoDaoImpl.delete(avaliacao, session);
-        avaliacao = avaliacaoDaoImpl.searchById(avaliacao.getId(), session);
+		avaliacaoDaoImpl = new AvaliacaoDaoImpl();
+
+		avaliacaoDaoImpl.delete(avaliacao, session);
+		avaliacao = avaliacaoDaoImpl.searchById(avaliacao.getId(), session);
 		session.close();
-		
+
 		if (avaliacao != null)
 			return false;
-		
+
 		return true;
 	}
-	
+
 	@PUT
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes(MediaType.APPLICATION_JSON)
-	public GenericEntity<Avaliacao> atualiza(Avaliacao avaliacao){
+	public GenericEntity<Avaliacao> atualiza(Avaliacao avaliacao) {
 		session = HibernateUtil.openSession();
-        avaliacaoDaoImpl = new AvaliacaoDaoImpl();
-        avaliacaoDaoImpl.saveOrUpdate(avaliacao, session);
+		avaliacaoDaoImpl = new AvaliacaoDaoImpl();
+		avaliacaoDaoImpl.saveOrUpdate(avaliacao, session);
 		session.close();
-		return new GenericEntity<Avaliacao>(avaliacao) {};
+		return new GenericEntity<Avaliacao>(avaliacao) {
+		};
 	}
 
 }

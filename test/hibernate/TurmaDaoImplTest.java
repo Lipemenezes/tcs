@@ -14,6 +14,7 @@ import dao.HibernateUtil;
 import dao.TurmaDao;
 import dao.TurmaDaoImpl;
 import entity.Turma;
+import entity.Usuario;
 import util.Generator;
 
 /**
@@ -32,9 +33,13 @@ public class TurmaDaoImplTest {
 
     @Test
     public void testSave() {
+    	UsuarioDaoImplTest usuarioTest = new UsuarioDaoImplTest();
+		Usuario usuario = usuarioTest.createUsuarioIfNotExists();
+		
         session = HibernateUtil.openSession();
         turma = new Turma();
         turma.setNome(Generator.randomString() + "_save");
+        turma.getUsuarios().add(usuario);
         turmaDao.saveOrUpdate(turma, session);
         session.close();
 

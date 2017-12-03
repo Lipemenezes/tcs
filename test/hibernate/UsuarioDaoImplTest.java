@@ -63,7 +63,7 @@ public class UsuarioDaoImplTest {
 		assertFalse(list.isEmpty());
 	}
 
-	private void createUsuarioIfNotExists() {
+	public Usuario createUsuarioIfNotExists() {
 		session = HibernateUtil.openSession();
 		Query consulta = session.createQuery("select max(id) from Usuario");
 		Long id = (Long) consulta.uniqueResult();
@@ -75,6 +75,8 @@ public class UsuarioDaoImplTest {
 			usuario = usuarioDao.searchById(id, session);
 			session.close();
 		}
+		
+		return usuario;
 
 	}
 }

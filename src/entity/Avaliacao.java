@@ -1,15 +1,15 @@
 package entity;
 
 import java.util.Date;
-import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,27 +43,24 @@ public class Avaliacao {
 	@Column
 	private boolean ativo;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "turma_id")
 	private Turma turma;
-
-	@ManyToMany(mappedBy = "avaliacoes")
-	private List<Usuario> usuarios;
 
 	public Avaliacao() {
 		super();
 	}
 
-	public Avaliacao(Long id, String nome, Date dataCadastro, Date dataEntrega, Long duracao, Turma turma,
-			boolean ativo) {
+	public Avaliacao(Long id, String nome, Date dataCadastro, Date dataEntrega, Long duracao, boolean ativo,
+			Turma turma) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataCadastro = dataCadastro;
 		this.dataEntrega = dataEntrega;
 		this.duracao = duracao;
-		this.turma = turma;
 		this.ativo = ativo;
+		this.turma = turma;
 	}
 
 	public Long getId() {
@@ -106,14 +103,6 @@ public class Avaliacao {
 		this.duracao = duracao;
 	}
 
-	public Turma getTurma() {
-		return turma;
-	}
-
-	public void setTurma(Turma turma) {
-		this.turma = turma;
-	}
-
 	public boolean isAtivo() {
 		return ativo;
 	}
@@ -122,24 +111,19 @@ public class Avaliacao {
 		this.ativo = ativo;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	public Turma getTurma() {
+		return turma;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	@Override
-	public String toString() {
-		return "Avaliacao [id=" + id + ", nome=" + nome + ", dataCadastro=" + dataCadastro + ", dataEntrega="
-				+ dataEntrega + ", duracao=" + duracao + ", turma=" + turma + "]";
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (ativo ? 1231 : 1237);
 		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
 		result = prime * result + ((dataEntrega == null) ? 0 : dataEntrega.hashCode());
 		result = prime * result + ((duracao == null) ? 0 : duracao.hashCode());
@@ -158,6 +142,8 @@ public class Avaliacao {
 		if (getClass() != obj.getClass())
 			return false;
 		Avaliacao other = (Avaliacao) obj;
+		if (ativo != other.ativo)
+			return false;
 		if (dataCadastro == null) {
 			if (other.dataCadastro != null)
 				return false;

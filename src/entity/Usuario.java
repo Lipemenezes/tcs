@@ -1,15 +1,16 @@
 package entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -55,22 +56,15 @@ public class Usuario {
 	@JoinColumn(name = "permissao_id")
 	private Permissao permissao;
 
-	@ManyToMany
-	@JoinTable(joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "avaliacao_id") })
-	private List<Avaliacao> avaliacoes;
-
-	@ManyToMany
-	@JoinTable(joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "turma_id") })
-	private List<Turma> turmas;
+	@ManyToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+	private List<Turma> turmas = new ArrayList<Turma>();
 
 	public Usuario() {
 		super();
 	}
 
 	public Usuario(Long id, String nome, String sobrenome, String cpf, String email, String senha, Date dataCadastro,
-			boolean ativo, Permissao permissao) {
+			boolean ativo, Permissao permissao, List<Turma> turmas) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -81,6 +75,7 @@ public class Usuario {
 		this.dataCadastro = dataCadastro;
 		this.ativo = ativo;
 		this.permissao = permissao;
+		this.turmas = turmas;
 	}
 
 	public Long getId() {
@@ -155,27 +150,12 @@ public class Usuario {
 		this.permissao = permissao;
 	}
 
-	public List<Avaliacao> getAvaliacoes() {
-		return avaliacoes;
-	}
-
-	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-		this.avaliacoes = avaliacoes;
-	}
-
 	public List<Turma> getTurmas() {
 		return turmas;
 	}
 
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", cpf=" + cpf + ", email=" + email
-				+ ", senha=" + senha + ", dataCadastro=" + dataCadastro + ", ativo=" + ativo + ", permissao="
-				+ permissao + "]";
 	}
 
 	@Override
@@ -191,6 +171,7 @@ public class Usuario {
 		result = prime * result + ((permissao == null) ? 0 : permissao.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result + ((sobrenome == null) ? 0 : sobrenome.hashCode());
+		result = prime * result + ((turmas == null) ? 0 : turmas.hashCode());
 		return result;
 	}
 
@@ -244,6 +225,11 @@ public class Usuario {
 			if (other.sobrenome != null)
 				return false;
 		} else if (!sobrenome.equals(other.sobrenome))
+			return false;
+		if (turmas == null) {
+			if (other.turmas != null)
+				return false;
+		} else if (!turmas.equals(other.turmas))
 			return false;
 		return true;
 	}

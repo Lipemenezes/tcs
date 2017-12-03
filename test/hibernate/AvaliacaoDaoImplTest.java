@@ -14,6 +14,7 @@ import dao.AvaliacaoDao;
 import dao.AvaliacaoDaoImpl;
 import dao.HibernateUtil;
 import entity.Avaliacao;
+import entity.Usuario;
 import util.Generator;
 
 /**
@@ -25,6 +26,7 @@ public class AvaliacaoDaoImplTest {
 	private Avaliacao avaliacao;
 	private AvaliacaoDao avaliacaoDao;
 	private Session session;
+	private List<Usuario> usuarios;
 
 	public AvaliacaoDaoImplTest() {
 		avaliacaoDao = new AvaliacaoDaoImpl();
@@ -32,9 +34,14 @@ public class AvaliacaoDaoImplTest {
 
 	@Test
 	public void testSave() {
+
+		UsuarioDaoImplTest usuarioTest = new UsuarioDaoImplTest();
+		Usuario usuario = usuarioTest.createUsuarioIfNotExists();
+		
 		session = HibernateUtil.openSession();
 		avaliacao = new Avaliacao();
 		avaliacao.setNome(Generator.randomString() + "_save");
+		avaliacao.setAtivo(true);
 		avaliacaoDao.saveOrUpdate(avaliacao, session);
 		session.close();
 
