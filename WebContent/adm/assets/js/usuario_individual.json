@@ -1,0 +1,9 @@
+ {
+                    "id": "001",
+                    "nome": "Paulo",
+                    "sobrenome": "jorge",
+                    "telefone": "(48)996297813",
+                    "senha": "123123",
+                    "email": "paulo@soujava.com",
+                    "nivel": "1"
+                }

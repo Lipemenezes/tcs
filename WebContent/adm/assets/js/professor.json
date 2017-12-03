@@ -1,0 +1,30 @@
+{
+    "professor": [
+        {
+            "id": "001",
+            "nome": "Paulo",
+            "sobrenome": "Jorge",
+            "senha": "123123",
+            "email": "professor@professor.com",
+            "telefone": "(48) 996297813"
+        },
+        {
+            "id": "002",
+            "nome": "Arnaldo",
+            "sobrenome": "Antunes",
+            "senha": "123123",
+            "email": "professor@professor.com",
+            "telefone": "(48) 996297813"
+        },
+        {
+            "id": "003",
+            "nome": "Jessica",
+            "sobrenome": "Pereira",
+            "senha": "123123",
+            "email": "professor@professor.com",
+            "telefone": "(48) 996297813"
+        }
+        
+        
+    ]
+}

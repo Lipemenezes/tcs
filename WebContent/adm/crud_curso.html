@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>{$titulo_app}</title>
+
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="../assets/css/sweetalert.css" type="text/css" rel="stylesheet" />
+        <link href="../assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href='../assets/fullcalendar.min.css' rel='stylesheet' />
+        <link href='../assets/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+
+
+
+    <body>
+        <div class="row">
+            <ul id="slide-out" class="side-nav">
+                <li><div class="user-view">
+                        <div class="background">
+                            <h2 class="flow-text center" style="margin-left: 10px">Faculdade SENAC</h2>
+                        </div>
+                        <br/>
+
+                    </div></li>
+                <li><div class="divider"></div></li>
+                
+                <li><a class="subheader">Home</a></li>
+                <li><a href="index.html"><i class="material-icons">home</i> Home</a></li>
+                <li><a class="subheader">Listas:</a></li>
+                <li><a href="list_agenda.html"><i class="material-icons">chevron_right</i> Agenda</a></li>
+                <li><a href="list_professor.html"><i class="material-icons">chevron_right</i> Professor</a></li>
+                <li><a href="list_curso.html"><i class="material-icons">chevron_right</i> Curso</a></li>
+                <li><a href="list_disciplina.html"><i class="material-icons">chevron_right</i> Disciplina </a></li>
+                <li><a href="list_usuario.html"><i class="material-icons">chevron_right</i> Usuário </a></li>
+
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Sistema</a></li>
+                <li><a href="../login.html"><i class="material-icons">close</i>Sair </a></li>
+
+            </ul>
+            <div style="padding-left: 20px; padding-top: 10px">
+                <a   href="#" data-activates="slide-out" class="btn-floating black-text button-collapse">
+                    <i class="material-icons">menu</i></a>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="card white black-text">
+                        <br />
+                        <div class="container">
+                            <a href="list_curso.html"  class="btn-floating blue right"><i class="material-icons">replay</i></a>
+                        </div>
+                        <div class="row">
+                            <br />
+                            <div class="container">
+                                <h4 class="left">Curso</h4>
+                                    <br /><br />
+                                <form class="col s12" name="frm_curso" id="frm_curso" method="post">
+                                    
+                                <!-- ID DO CURSO -->
+                                <input type="hidden" name="id" value="" id="id" />
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input placeholder="digite o nome do curso" name="curso" id="curso" type="text" class="validate">
+                                        <label for="curso">Nome do curso</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="sigla" name="sigla" placeholder="digite a sigla do curso" type="text" class="validate">
+                                        <label for="sigla">Sigla </label>
+                                    </div>
+                                </div>
+                              
+                                 <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="submit" id="btn_cadastrar" name="cadastrar" value="Cadastrar"  class="btn green right"/>
+                                        <a    id="btn_deletar"   class="red btn_deletar_professor btn  left">Deletar </a>
+                                        <input type="submit" id="btn_editar"  name="editar" value="Editar"  class="btn green right"/>
+                                     
+                                    </div>
+                                 </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script src="../assets/js/jquery-2.1.1.min.js"></script>
+        <script src="../assets/js/materialize.js"></script>
+        <script src="../assets/js/sweetalert-dev.js"></script>
+        <script src="assets/js/cursos.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,42 @@
+{
+    "disciplina":
+            [
+                {
+                    "id": "1",
+                    "nome": "Banco de dados",
+                    "professor": "Nome do Professor ",
+                    "curso": "Nome do curso "
+                },
+                {
+                    "id": "2",
+                    "nome": "Algoritmo I",
+                    "professor": "Nome do Professor ",
+                    "curso": "Nome do curso "
+                    
+                },
+                {
+                    "id": "3",
+                    "nome": "Algoritmo II",
+                    "professor": "Nome do Professor ",
+                    "curso": "Nome do curso "
+                },
+                {
+                    "id": "4",
+                    "nome": "Algoritmo I",
+                    "professor": "Nome do Professor ",
+                    "curso": "Nome do curso "
+                },
+                {
+                    "id": "5",
+                    "nome": "Android",
+                    "professor": "Nome do Professor ",
+                    "curso": "Nome do curso "
+                },
+                {
+                    "id": "6",
+                    "nome": "Java",
+                    "professor": "Nome do Professor ",
+                    "curso": "Nome do curso "
+                }
+            ]
+}
