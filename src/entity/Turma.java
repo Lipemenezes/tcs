@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 
@@ -53,9 +56,10 @@ public class Turma {
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
 	@JoinTable(name = "usuario_turma", joinColumns = { @JoinColumn(name = "turma_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "usuario_id") })
+	@JsonIgnore
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	public Turma() {

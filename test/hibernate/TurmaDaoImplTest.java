@@ -64,6 +64,11 @@ public class TurmaDaoImplTest {
         session = HibernateUtil.openSession();
         TurmaDaoImpl turmaDaoImpl = new TurmaDaoImpl();
         List<Turma> list = turmaDaoImpl.listAll(session);
+        
+        for(Turma t: list){
+        	System.out.println(t.getUsuarios());
+        }
+        
 
         assertFalse(list.isEmpty());
     }
