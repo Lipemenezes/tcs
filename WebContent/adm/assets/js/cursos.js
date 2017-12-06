@@ -15,14 +15,17 @@ $('.button-collapse').sideNav();
     });
     //cadastro 
    $("#frm_curso").submit(function () {
-       var json = '"id": "'+$("#id").val()+'", "curso": "'+$("#curso").val()+'", "sigla": "'+$("#sigla").val()+'"';
+       var json = {
+    		   "id": $("#id").val(),
+    		   "nome": $("#curso").val(),
+    		   "acronimo": $("#sigla").val()
+       }
        if( $("#nome").val() === '' || $("#sigla").val() === ''){
            swal('Ops', 'Preencha todos os dados', 'info');
            return false;
        }else{
-           
            console.log(json);
-            cadastrar(json);
+           cadastrar(json);
        }
         return false;
     });
@@ -34,30 +37,29 @@ function getJSON( act ){
  
   //MODO EDICAO OU DELETE
   if( url.indexOf("del") > -1 || url.indexOf("up") > -1 ){
-      $.getJSON("http://localhost/tcs/adm/assets/js/curso_individual.json", function(data) {
+	  var url = new URL(window.location.href);
+	  var urlId = url.searchParams.get("id");
+      $.getJSON("http://localhost:8080/projeto-tcs/resources/cursos/curso?id=" + urlId, function(data) {
           $("#curso").val(data.nome);
-          $("#sigla").val(data.sigla);
+          $("#sigla").val(data.acronimo);
           $("#id").val(data.id);
       });
   }
   //SE FOR DIFERENTE DE CAD EH LISTAR
   else if( url.indexOf("cad") > -1 == false)
   {
-  $.getJSON("http://localhost/tcs/adm/assets/js/curso.json", function(data) {
-    var d = data.curso;
+  $.getJSON("http://localhost:8080/projeto-tcs/resources/cursos/", function(data) {
     var saida = "";
-    for (j = 0; j < d.length; j++) {
+    for (j = 0; j < data.length; j++) {
               saida += ' <tr> ';
-              saida +='<td>'+d[j].nome+ '</td>'
-              saida +='<td>'+d[j].sigla+'</td>';
+              saida +='<td>'+data[j].nome+ '</td>'
+              saida +='<td>'+data[j].sigla+'</td>';
               saida +='<td>';
-              saida +='<a href="crud_curso.html?id='+d[j].id+'&act=up" class="btn-floating green"><i class="material-icons">edit</i></a>';
-              saida +='<a  href="crud_curso.html?id='+d[j].id+'&act=del"  class="btn-floating red""><i class="material-icons">delete</i></a>';
+              saida +='<a href="crud_curso.html?id='+data[j].id+'&act=up" class="btn-floating green"><i class="material-icons">edit</i></a>';
+              saida +='<a  href="crud_curso.html?id='+data[j].id+'&act=del"  class="btn-floating red""><i class="material-icons">delete</i></a>';
               saida +='</td>';
               saida +='</tr>';
           }
-
-
         document.getElementById('cursos').innerHTML = saida;
     });
   }
@@ -80,30 +82,30 @@ function controleBotoes(){
          $('#btn_editar').css("display", "none");
      }
 }
-function cadastrar( dados ){
-     
-  $.ajax({
-    url:   'ajax/URL',
-    type: 'POST',
-    data:  dados
 
+function cadastrar( dados ){
+	if (!dados["id"]) {
+		delete dados['id'];
+	}
+	dados['ativo'] = true;
+  $.ajax({
+    url:  'http://localhost:8080/projeto-tcs/resources/cursos/',
+    type: 'POST',
+    contentType: "application/json",
+    data:  JSON.stringify(dados)
   }).always(function(resposta) {
-       
-       if( resposta === 'cadastrado'){
-          swal("OPa!", "Cadastro realizado com sucesso","success" );
+       if( resposta.id){
+          swal("Opa!", "Cadastro realizado com sucesso","success" );
            return false;  
        } 
        if( resposta === 'error'){
-          swal("Ops!", "obtivemos um erro","error" );
+          swal("Ops!", "Algo deu errado","error" );
            return false;  
        } 
-       
-      
-    
   });
 }
+
 function deletar (dados){
-     
      swal({
             title: "Você tem certeza?",
             text: "Está ação ira deletar o contato de emergência",
@@ -119,23 +121,19 @@ function deletar (dados){
                 function(isConfirm){
                   if (isConfirm) {
                       $.ajax({
-                        url:   'URL_PARA DELETAR PASAANDO O ID',
-                        type: 'POST',
+                        url:   'http://localhost:8080/projeto-tcs/resources/cursos/',
+                        type: 'DELETE',
+                        contentType: "application/json",
                         data:  dados
-
                       }).always(function(resposta) {
-
                            if( resposta === 'deleted'){
                                window.location = "URL_COMPLETA";
                                return false;  
                            }
                            if( resposta === 'error'){
-                              swal("Opss!", "Cadastro realizado com sucesso","success" );
+                              swal("Opss!", "Algo deu errado","error" );
                                return false;  
                            } 
-
-
-
                       });
                       
                     } else {

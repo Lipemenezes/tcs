@@ -31,8 +31,6 @@ $(document).ready(function () {
            swal('Ops', 'Preencha todos os dados', 'info');
            return false;
        }else{
-           
-         
            cadastrar(json);
        }
         return false;
@@ -47,7 +45,7 @@ function getJSON(  ){
  
   //MODO EDICAO OU DELETE
   if( url.indexOf("del") > -1 || url.indexOf("up") > -1 ){
-      $.getJSON("http://localhost/tcs/adm/assets/js/item_da_agenda.json", function(data) {
+      $.getJSON("http://localhost:8080/projeto-tcs/resources/usuarios/", function(data) {
         console.log(data)
           $("#titulo").val(data.titulo);
           $("#professor").val(data.professor);
@@ -64,7 +62,7 @@ function getJSON(  ){
   //SE FOR DIFERENTE DE CAD EH LISTAR
   else if( url.indexOf("cad") > -1 == false)
   {
-      $.getJSON("http://localhost/tcs/adm/assets/js/agenda.json", function(data) {
+      $.getJSON("http://localhost:8080/projeto-tcs/resources/usuarios/", function(data) {
             var d = data.agenda;
              var saida = "";
 
@@ -113,6 +111,7 @@ function cadastrar( dados ){
   $.ajax({
     url:   'ajax/URL',
     type: 'POST',
+    contentType: "application/json",
     data:  dados
 
   }).always(function(resposta) {
@@ -147,12 +146,12 @@ function deletar (dados){
                 function(isConfirm){
                   if (isConfirm) {
                       $.ajax({
-                        url:   'URL_PARA DELETAR PASAANDO O ID',
+                        url: 'http://localhost:8080/projeto-tcs/resources/usuarios/',
                         type: 'POST',
+                        contentType: "application/json",
                         data:  dados
 
                       }).always(function(resposta) {
-
                            if( resposta === 'deleted'){
                                window.location = "URL_COMPLETA";
                                return false;  
@@ -161,11 +160,7 @@ function deletar (dados){
                               swal("Opss!", "Tente mais tarde","info" );
                                return false;  
                            } 
-
-
-
                       });
-                      
                     } else {
                    swal({
                                 title: "Opa",
@@ -186,8 +181,6 @@ function deletar (dados){
 }
 
 function comboxSelecionado(idProf, idDisciplina){
-    
-    
     $.getJSON("http://localhost/tcs/adm/assets/js/professor.json", function(data) {
      for (i = 0; i < data.professor.length; i++) {
          $('select').material_select();
