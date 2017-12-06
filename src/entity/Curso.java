@@ -30,7 +30,6 @@ public class Curso {
 	@Column
 	private boolean ativo;
 
-	
 	public Curso() {
 		super();
 	}

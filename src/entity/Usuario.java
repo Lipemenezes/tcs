@@ -57,7 +57,7 @@ public class Usuario {
 	@JoinColumn(name = "permissao_id")
 	private Permissao permissao;
 
-	@ManyToMany(mappedBy = "usuarios", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "usuarios", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Turma> turmas = new ArrayList<Turma>();
 
 	public Usuario() {

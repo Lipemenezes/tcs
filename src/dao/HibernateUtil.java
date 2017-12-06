@@ -13,8 +13,8 @@ import entity.Turma;
 import entity.Usuario;
 
 /**
- * 
  * @author Felipe Menezes
+ * @author Maicon Queiroz
  */
 public class HibernateUtil {
 
@@ -31,13 +31,11 @@ public class HibernateUtil {
 			cfg.addAnnotatedClass(Usuario.class);
 
 			cfg.configure("/dao/hibernate.cfg.xml");
-			StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder()
-					.applySettings(cfg.getProperties());
+			StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties());
 			sessionFactory = cfg.buildSessionFactory(build.build());
 
 		} catch (Throwable ex) {
-			// Log the exception.
-			System.err.println("Erro ao criar fábrica coneção" + ex);
+			System.err.println("Error in DataBase... Please check!" + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}

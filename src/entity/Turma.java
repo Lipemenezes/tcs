@@ -56,7 +56,7 @@ public class Turma {
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
 
-	@ManyToMany(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_turma", joinColumns = { @JoinColumn(name = "turma_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "usuario_id") })
 	@JsonIgnore
