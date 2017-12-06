@@ -12,8 +12,8 @@ public class TableGenerator {
 
 	public static void main(String[] args) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("projeto_tcs_PU");
-		emf.close();
+		EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("projeto_tcs_PU");
+		managerFactory.close();
 
 	}
 

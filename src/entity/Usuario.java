@@ -61,12 +61,10 @@ public class Usuario {
 	private List<Turma> turmas = new ArrayList<Turma>();
 
 	public Usuario() {
-		super();
 	}
 
 	public Usuario(Long id, String nome, String sobrenome, String cpf, String email, String senha, Date dataCadastro,
 			boolean ativo, Permissao permissao, List<Turma> turmas) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
