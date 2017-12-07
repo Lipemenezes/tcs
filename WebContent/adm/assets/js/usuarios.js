@@ -30,8 +30,8 @@ $(document)
 											"email" : $("#email").val(),
 											"cpf" : $("#cpf").val(),
 											"permissao" : {
-												"id": document
-												.querySelectorAll('input[type=radio]:checked')[0].value
+												"id" : document
+														.querySelectorAll('input[type=radio]:checked')[0].value
 											}
 										}
 
@@ -63,7 +63,8 @@ function getJSON() {
 		$
 				.ajax(
 						{
-							url : 'http://localhost:8080/projeto-tcs/resources/usuarios/usuario?id='+urlId,
+							url : 'http://localhost:8080/projeto-tcs/resources/usuarios/usuario?id='
+									+ urlId,
 							type : 'GET'
 						}).always(function(data) {
 					$("#nome").val(data.nome);
@@ -101,7 +102,8 @@ function getJSON() {
 										+ data[j].sobrenome + '</td>'
 								saida += '<td>' + data[j].cpf + '</td>'
 								saida += '<td>' + data[j].email + '</td>'
-								saida += '<td>' + data[j].permissao.nome + '</td>'
+								saida += '<td>' + data[j].permissao.nome
+										+ '</td>'
 								saida += '<td>';
 								saida += '<a href="crud_usuario.html?id='
 										+ data[j].id
@@ -148,7 +150,7 @@ function cadastrar(dados) {
 			return false;
 		}
 		if (resposta === 'error') {
-			swal("Ops!", "obtivemos um erro", "error");
+			swal("Ops!", "Contate o suporte", "error");
 			return false;
 		}
 	});

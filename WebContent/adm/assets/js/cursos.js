@@ -21,7 +21,7 @@ $('.button-collapse').sideNav();
     		   "acronimo": $("#sigla").val()
        }
        if( $("#nome").val() === '' || $("#sigla").val() === ''){
-           swal('Ops', 'Preencha todos os dados', 'info');
+           swal('Ops', 'Preencha todos os campos', 'info');
            return false;
        }else{
            console.log(json);
@@ -99,7 +99,7 @@ function cadastrar( dados ){
            return false;  
        } 
        if( resposta === 'error'){
-          swal("Ops!", "Algo deu errado","error" );
+          swal("Ops!", "Contate o suporte","error" );
            return false;  
        } 
   });
