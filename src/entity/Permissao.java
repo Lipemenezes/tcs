@@ -31,23 +31,14 @@ public class Permissao {
 	@Column
 	private boolean ativo;
 	
-	/*
-	 * 1 = Aluno
-	 * 2 = Professor
-	 * 3 = Admin
-	 */
-	@Column
-	private int tipo;
-
 	public Permissao() {
 	}
 
-	public Permissao(Long id, String nome, String permissoes, boolean ativo, int tipo) {
+	public Permissao(Long id, String nome, String permissoes, boolean ativo) {
 		this.id = id;
 		this.nome = nome;
 		this.permissoes = permissoes;
 		this.ativo = ativo;
-		this.tipo = tipo;
 	}
 
 	public Long getId() {
@@ -80,15 +71,6 @@ public class Permissao {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
-	}
-	
-
-	public int getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
 	}
 
 	@Override
