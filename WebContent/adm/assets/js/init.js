@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 function myJSON(){
   $.getJSON("http://localhost:8080/projeto-tcs/resources/disciplinas", function(data) {
-  var disciplinas = data.disciplina;
+  var disciplinas = data;
    $('select[name="disciplina"]').append("<option  value=\"\">Selecione uma disciplina</option>");
   for (i = 0; i < disciplinas.length; i++) {
      $('select').material_select();      
@@ -17,13 +17,11 @@ function myJSON(){
 
  });
   
-  
-  //fazer pegar só professores
-  $.getJSON("http://localhost:8080/projeto-tcs/resources/usuarios", function(data) {
+  $.getJSON("http://localhost:8080/projeto-tcs/resources/usuarios/professores", function(data) {
   $('select[name="professor"]').append("<option  value=\"\">Selecione um(a) professor(a)</option>");
-  for (i = 0; i < data.professor.length+1; i++) {
+  for (i = 0; i < data.length; i++) {
          $('select').material_select();
-         $('select[name="professor"]').append("<option  value=\"" + data.professor[i].id + "\">" + data.professor[i].nome +" "+ data.professor[i].sobrenome+ "</option>");
+         $('select[name="professor"]').append("<option  value=\"" + data[i].id + "\">" + data[i].nome +" "+ data[i].sobrenome+ "</option>");
       
   }
   

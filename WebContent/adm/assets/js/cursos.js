@@ -11,8 +11,7 @@ $('.button-collapse').sideNav();
          var dados = '{"id": "'+id+'" }';
          console.log(dados);
          deletar(dados);
-        return false;
-    });
+        return false;    });
     //cadastro 
    $("#frm_curso").submit(function () {
        var json = {
@@ -53,7 +52,7 @@ function getJSON( act ){
     for (j = 0; j < data.length; j++) {
               saida += ' <tr> ';
               saida +='<td>'+data[j].nome+ '</td>'
-              saida +='<td>'+data[j].sigla+'</td>';
+              saida +='<td>'+data[j].acronimo+'</td>';
               saida +='<td>';
               saida +='<a href="crud_curso.html?id='+data[j].id+'&act=up" class="btn-floating green"><i class="material-icons">edit</i></a>';
               saida +='<a  href="crud_curso.html?id='+data[j].id+'&act=del"  class="btn-floating red""><i class="material-icons">delete</i></a>';
@@ -105,7 +104,7 @@ function cadastrar( dados ){
   });
 }
 
-function deletar (dados){
+function deletar(dados){
      swal({
             title: "Você tem certeza?",
             text: "Está ação ira deletar o contato de emergência",
@@ -126,8 +125,8 @@ function deletar (dados){
                         contentType: "application/json",
                         data:  dados
                       }).always(function(resposta) {
-                           if( resposta === 'deleted'){
-                               window.location = "URL_COMPLETA";
+                           if( resposta === true ){
+                               window.location = "http://localhost:8080/projeto-tcs/adm/list_curso.html";
                                return false;  
                            }
                            if( resposta === 'error'){

@@ -18,6 +18,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**
  * 
  * @author Felipe Menezes
@@ -25,6 +29,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "usuario")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Usuario {
 
 	private static final long serialVersionUID = 1L;
@@ -47,9 +52,6 @@ public class Usuario {
 	@Column(length = 100, nullable = true)
 	private String senha;
 
-	@Temporal(value = TemporalType.DATE)
-	private Date dataCadastro;
-
 	@Column
 	private boolean ativo;
 
@@ -57,13 +59,14 @@ public class Usuario {
 	@JoinColumn(name = "permissao_id")
 	private Permissao permissao;
 
-	@ManyToMany(mappedBy = "usuarios", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
+//	@JsonManagedReference
 	private List<Turma> turmas = new ArrayList<Turma>();
 
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nome, String sobrenome, String cpf, String email, String senha, Date dataCadastro,
+	public Usuario(Long id, String nome, String sobrenome, String cpf, String email, String senha,
 			boolean ativo, Permissao permissao, List<Turma> turmas) {
 		this.id = id;
 		this.nome = nome;
@@ -71,7 +74,6 @@ public class Usuario {
 		this.cpf = cpf;
 		this.email = email;
 		this.senha = senha;
-		this.dataCadastro = dataCadastro;
 		this.ativo = ativo;
 		this.permissao = permissao;
 		this.turmas = turmas;
@@ -125,14 +127,6 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
 	public boolean isAtivo() {
 		return ativo;
 	}
@@ -163,7 +157,6 @@ public class Usuario {
 		int result = 1;
 		result = prime * result + (ativo ? 1231 : 1237);
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -189,11 +182,6 @@ public class Usuario {
 			if (other.cpf != null)
 				return false;
 		} else if (!cpf.equals(other.cpf))
-			return false;
-		if (dataCadastro == null) {
-			if (other.dataCadastro != null)
-				return false;
-		} else if (!dataCadastro.equals(other.dataCadastro))
 			return false;
 		if (email == null) {
 			if (other.email != null)

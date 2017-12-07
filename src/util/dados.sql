@@ -1,0 +1,14 @@
+INSERT INTO `curso` (`id`, `acronimo`, `ativo`, `nome`) VALUES (1, 'ads', b'1', 'Analise e desenvolvimento de Sistemas');
+INSERT INTO `curso` (`id`, `acronimo`, `ativo`, `nome`) VALUES (2, 'tgti', b'1', 'Gestão de TI');
+INSERT INTO `curso` (`id`, `acronimo`, `ativo`, `nome`) VALUES (3, 'AAP', b'1', 'AjudaAiProfessor');
+INSERT INTO `permissao` (`id`, `ativo`, `nome`, `permissoes`) VALUES (1, b'1', 'aluno', 'atualiza');
+INSERT INTO `permissao` (`id`, `ativo`, `nome`, `permissoes`) VALUES (2, b'1', 'professor', 'atualiza');
+INSERT INTO `permissao` (`id`, `ativo`, `nome`, `permissoes`) VALUES (3, b'1', 'adm', 'sla');
+INSERT INTO `usuario` (`id`, `ativo`, `cpf`, `email`, `nome`, `senha`, `sobrenome`, `permissao_id`) VALUES (1, b'1', '12345678911', '1@test', 'Felipe', '123', 'Menezes', 3);
+INSERT INTO `usuario` (`id`, `ativo`, `cpf`, `email`, `nome`, `senha`, `sobrenome`, `permissao_id`) VALUES (2, b'1', '2132123456', '2@test', 'Maicon', '123', 'Queiroz', 1);
+INSERT INTO `usuario` (`id`, `ativo`, `cpf`, `email`, `nome`, `senha`, `sobrenome`, `permissao_id`) VALUES (3, b'1', '11223344556622', '3@test', 'Vilmar', '123', 'Ajuda O Bonde', 1);
+INSERT INTO `usuario` (`id`, `ativo`, `cpf`, `email`, `nome`, `senha`, `sobrenome`, `permissao_id`) VALUES (4, b'1', '32165498732', '4@test', 'Nunca', '123', 'Te Pedi Nada', 1);
+INSERT INTO `usuario` (`id`, `ativo`, `cpf`, `email`, `nome`, `senha`, `sobrenome`, `permissao_id`) VALUES (5, b'1', '12345665421', '5@test', 'Juliano', '123', 'Juliano Juliano', 1);
+INSERT INTO `usuario` (`id`, `ativo`, `cpf`, `email`, `nome`, `senha`, `sobrenome`, `permissao_id`) VALUES (6, b'1', '1313143211', '6@test', 'Guilherme', '123', 'Guilherme Guilherme', 1);
+INSERT INTO `usuario` (`id`, `ativo`, `cpf`, `email`, `nome`, `senha`, `sobrenome`, `permissao_id`) VALUES (7, b'1', '99999999999', 'vilmar@test', 'Vilmar', '123', 'Vai Ajudar o Bonde', 2);
+INSERT INTO `disciplina` (`id`, `acronimo`, `ativo`, `nome`, `curso_id`, `professor_id`) VALUES (2, 'WEB', b'1', 'Programação Web', 1, 7);
