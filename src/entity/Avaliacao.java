@@ -41,6 +41,9 @@ public class Avaliacao {
 
 	@Column
 	private boolean ativo;
+	
+	@Column
+	private int dificuldade;
 
 	@OneToOne(fetch = FetchType.EAGER)
 	private Turma turma;

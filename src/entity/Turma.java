@@ -16,7 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * 
@@ -25,15 +27,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "turma")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Turma {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@Column(length = 100, nullable = true)
-	private String nome;
 
 	@Column(length = 100, nullable = true)
 	private String semestre;
@@ -48,22 +48,26 @@ public class Turma {
 	@JoinColumn(name = "disciplina_id")
 	private Disciplina disciplina;
 
-	@ManyToOne
-	@JoinColumn(name = "professor_id")
-	private Usuario professor;
-
-	@ManyToOne
-	@JoinColumn(name = "curso_id")
-	private Curso curso;
-
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_turma", joinColumns = { @JoinColumn(name = "turma_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "usuario_id") })
-	@JsonIgnore
+//	@JsonIgnore
+	@JsonBackReference
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	public Turma() {
 		super();
+	}
+
+	public Turma(Long id, String semestre, String turno, boolean ativo, Disciplina disciplina, 
+			List<Usuario> usuarios) {
+		super();
+		this.id = id;
+		this.semestre = semestre;
+		this.turno = turno;
+		this.ativo = ativo;
+		this.disciplina = disciplina;
+		this.usuarios = usuarios;
 	}
 
 	public Long getId() {
@@ -72,14 +76,6 @@ public class Turma {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getSemestre() {
@@ -112,22 +108,6 @@ public class Turma {
 
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
-	}
-
-	public Usuario getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Usuario professor) {
-		this.professor = professor;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
 	}
 
 	public List<Usuario> getUsuarios() {

@@ -31,8 +31,8 @@
                 <li><a class="subheader">Home</a></li>
                 <li><a href="index.html"><i class="material-icons">home</i> Home</a></li>
                 <li><a class="subheader">Listas:</a></li>
-                <li><a href="list_agenda.html"><i class="material-icons">chevron_right</i> Agenda</a></li>
-                <li><a href="list_professor.html"><i class="material-icons">chevron_right</i> Professor</a></li>
+                <!-- <li><a href="list_agenda.html"><i class="material-icons">chevron_right</i> Agenda</a></li> -->
+                <li><a href="list_turma.html"><i class="material-icons">chevron_right</i> Turma</a></li>
                 <li><a href="list_curso.html"><i class="material-icons">chevron_right</i> Curso</a></li>
                 <li><a href="list_disciplina.html"><i class="material-icons">chevron_right</i> Disciplina </a></li>
                 <li><a href="list_usuario.html"><i class="material-icons">chevron_right</i> Usuário </a></li>
@@ -49,12 +49,12 @@
 
             <div class="container">
                 <div class="row">
-                    <h2 class="flow-text">Lista de Professores cadastrado</h2>
+                    <h2 class="flow-text">Lista de Turmas cadastradas</h2>
                     <div class="card white black-text">
                         <br />
                         <div class="container"> 
                             <div class="row">
-                                <a href="crud_professor.html?act=cad" class="btn-floating blue right"><i class="material-icons">add</i></a>
+                                <a href="crud_turma.html?act=cad" class="btn-floating blue right"><i class="material-icons">add</i></a>
                                 <a href="index.html" class="btn-floating black left"><i class="material-icons">home</i></a>
                             </div>
                         </div>
@@ -62,14 +62,16 @@
                         <table class="striped bordered" >
                             <thead>
                                 <tr>
-                                    <th >Nome</th>
-                                    <th>Email Name</th>
-                                    <th>Telefone</th>
+                                    <th >Semestre</th>
+                                    <th>Turno</th>
+                                    <th>Disciplina</th>
+                                    <th>Professor</th>
+                                    <th>Curso</th>
                                     <th>Opção </th>
                                 </tr>
                             </thead>
 
-                            <tbody id="professores">
+                            <tbody id="turmas">
                             </tbody>
                         </table>
                         </div>
@@ -84,8 +86,8 @@
         <script src="../assets/js/jquery-2.1.1.min.js"></script>
         <script src="../assets/js/materialize.js"></script>
         <script src="../assets/js/sweetalert-dev.js"></script>
-        <script src="assets/js/professores.js"></script>
-        <script src="assets/js/professores.js"></script>
+        <script src="assets/js/init.js"></script>
+        <script src="assets/js/turmas.js"></script>
 
     </body>
 </html>

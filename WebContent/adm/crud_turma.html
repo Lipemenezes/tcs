@@ -14,8 +14,6 @@
         <link href='../assets/fullcalendar.min.css' rel='stylesheet' />
         <link href='../assets/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 
-
-
     <body>
         <div class="row">
              <ul id="slide-out" class="side-nav">
@@ -31,8 +29,7 @@
                 <li><a class="subheader">Home</a></li>
                 <li><a href="index.html"><i class="material-icons">home</i> Home</a></li>
                 <li><a class="subheader">Listas:</a></li>
-                <li><a href="list_agenda.html"><i class="material-icons">chevron_right</i> Agenda</a></li>
-                <li><a href="list_professor.html"><i class="material-icons">chevron_right</i> Professor</a></li>
+                <li><a href="list_turma.html"><i class="material-icons">chevron_right</i> Turma</a></li>
                 <li><a href="list_curso.html"><i class="material-icons">chevron_right</i> Curso</a></li>
                 <li><a href="list_disciplina.html"><i class="material-icons">chevron_right</i> Disciplina </a></li>
                 <li><a href="list_usuario.html"><i class="material-icons">chevron_right</i> Usuário </a></li>
@@ -52,41 +49,48 @@
                     <div class="card white black-text">
                         <br />
                         <div class="container">
-                           <a href="list_professor.html"  class="btn-floating blue right"><i class="material-icons">replay</i></a>
+                           <a href="list_turma.html"  class="btn-floating blue right"><i class="material-icons">replay</i></a>
                         </div>
                         <div class="row">
                             <br />
                             <div class="container">
-                                 <h4 class="left">Professor</h4>
+                                 <h4 class="left">Turma</h4>
                                     <br /><br />
-                                <form class="col s12" method="post" id="frm_professor"  name="frm_professor">
-                                    <!-- ID DO PROFESSOR -->
+                                <form class="col s12" method="post" id="frm_turma"  name="frm_turma">
                                     <input type="hidden" name="id" value="" id="id" />
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <input placeholder="digite seu nome" name="first_name" value="" id="first_name" type="text" class="validate">
-                                        <label for="first_name">Nome</label>
+                                        <input placeholder="digite o semestre" name="semestre" value="" id="semestre" type="text" class="validate">
+                                        <label for="first_name">Semestre</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="last_name" name="last_name" value="" placeholder="digite seu sobrenome" type="text" class="validate">
-                                        <label for="last_name">Sobre nome </label>
+                                        <select id="turno" name="turno">
+                                                <option value="" selected>Selecione o turno</option>
+                                                <option value="Matutino">Matutino</option>
+                                                <option value="Vespertino">Vespertino</option>
+                                                <option value="Noturno">Noturno</option>
+                                        </select>
+                                        <label>Turno</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <input id="password" name="password" value="" placeholder="digite a senha"type="password" class="validate">
-                                        <label for="password">Senha</label>
+                                        <select id="disciplina" name="disciplina">
+                                            <option value="" selected>Selecione a disciplina</option>
+                                        </select>
+                                        <label>disciplina</label>
                                     </div>
-                                
+
                                     <div class="input-field col s6">
-                                        <input id="email" type="email" name="email" placeholder="digite seu email" value="" class="validate">
-                                        <label for="email">E-mail</label>
+                                        <select id="alunos" name="alunos" multiple>
+                                        </select>
+                                        <label>Alunos</label>
                                     </div>
                                 </div>
                                  <div class="row">
                                     <div class="input-field col s12">
                                         <input type="submit" id="btn_cadastrar" name="cadastrar" value="Cadastrar"  class="btn green right"/>
-                                        <button  prof="001"  id="btn_deletar" name="deletar" value="Deletar"  class="red btn_deletar_professor btn  left">Deletar </button>
+                                        <button  prof="001"  id="btn_deletar" name="deletar" value="Deletar"  class="red btn_deletar_turma btn  left">Deletar </button>
                                         <input type="submit" id="btn_editar"  name="editar" value="Editar"  class="btn green right"/>
                                      
                                     </div>
@@ -104,7 +108,7 @@
         <script src="../assets/js/jquery-2.1.1.min.js"></script>
         <script src="../assets/js/materialize.js"></script>
         <script src="../assets/js/sweetalert-dev.js"></script>
-        <script src="assets/js/professores.js"></script>
+        <script src="assets/js/turmas.js"></script>
 
 
     </body>

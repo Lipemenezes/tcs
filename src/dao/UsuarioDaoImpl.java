@@ -27,4 +27,14 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long> implements Usuari
 		return resultQuery.list();
 	}
 
+	public List<Usuario> listProfessor(Session session) throws HibernateException {
+		Query resultQuery = session.createQuery("from Usuario where permissao_id = 2");
+		return resultQuery.list();
+	}
+	
+	public List<Usuario> listAluno(Session session) throws HibernateException {
+		Query resultQuery = session.createQuery("from Usuario where permissao_id = 1");
+		return resultQuery.list();
+	}
+
 }

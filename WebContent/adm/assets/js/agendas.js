@@ -17,16 +17,17 @@ $(document).ready(
 			// cadastro
 			$("#frm_agenda").submit(
 					function() {
-						var json = '{"id": "' + $("#id").val() + '","tipo": "'
-								+ $("#tipo").val() + '", "dificuldade": "'
-								+ $("#dificuldade").val()
-								+ '", "disciplina": "' + $("#disciplina").val()
-								+ '", "titulo": "' + $("#titulo").val()
-								+ '", "dataIn": "' + $("#dtIn").val()
-								+ '", "dataEn": "' + $("#dtEn").val()
-								+ '", "detalhe": "' + $("#detalhe").val()
-								+ '","professor": "' + $("#professor").val()
-								+ '"}';
+						
+						var json = {
+								"id": $("#id").val(),
+								"tipo": $("#tipo").val(),
+								"dificuldade": $("#dificuldade").val(),
+								"nome": $("#titulo").val(),
+								"dataEntrega": $("#dtEn").val(),
+								"turma": {
+									"id": 0
+								}
+						}
 
 						if ($("#tipo").val() === ''
 								|| $("#dificuldade").val() === ''
@@ -57,7 +58,7 @@ function getJSON() {
 						function(data) {
 							console.log(data)
 							$("#titulo").val(data.titulo);
-							$("#professor").val(data.professor);
+							$("#professor").val(data);
 							$("#dtIn").val(data.dataIn);
 							$("#dtEn").val(data.dataEn);
 							$("#detalhe").val(data.detalhe);
@@ -194,24 +195,24 @@ function deletar(dados) {
 
 }
 
-function comboxSelecionado(idProf, idDisciplina) {
+function comboxSelecionado(idProf='', idDisciplina='') {
 	$
 			.getJSON("http://localhost:8080/projeto-tcs/resources/usuarios",
 					function(data) {
-						for (i = 0; i < data.professor.length; i++) {
+						for (i = 0; i < data.length; i++) {
 							$('select').material_select();
-							if (idProf.valueOf() === data.professor[i].id) {
+							if (idProf.valueOf() === data[i].id) {
 								$('select[name="professor"]').append(
 										"<option selected value=\""
-												+ data.professor[i].id + "\">"
-												+ data.professor[i].nome
+												+ data[i].id + "\">"
+												+ data[i].nome
 												+ "</option>");
 							} else {
 								$('select[name="professor"]').append(
 										"<option  value=\""
-												+ data.professor[i].id + "\">"
-												+ data.professor[i].nome + " "
-												+ data.professor[i].sobrenome
+												+ data[i].id + "\">"
+												+ data[i].nome + " "
+												+ data[i].sobrenome
 												+ "</option>");
 							}
 						}
@@ -220,19 +221,19 @@ function comboxSelecionado(idProf, idDisciplina) {
 
 	$.getJSON("http://localhost:8080/projeto-tcs/resources/disciplinas",
 			function(data) {
-				for (i = 0; i < data.disciplina.length; i++) {
+				for (i = 0; i < data.length; i++) {
 					$('select').material_select();
-					if (idDisciplina.valueOf() === data.disciplina[i].id) {
+					if (idDisciplina.valueOf() === data[i].id) {
 						$('select[name="disciplina"]')
 								.append(
 										"<option selected value=\""
-												+ data.disciplina[i].id + "\">"
-												+ data.disciplina[i].nome
+												+ data[i].id + "\">"
+												+ data[i].nome
 												+ "</option>");
 					} else {
 						$('select[name="disciplina"]').append(
-								"<option  value=\"" + data.disciplina[i].id
-										+ "\">" + data.disciplina[i].nome
+								"<option  value=\"" + data[i].id
+										+ "\">" + data[i].nome
 										+ " </option>");
 					}
 				}

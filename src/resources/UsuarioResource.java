@@ -36,6 +36,28 @@ public class UsuarioResource {
 	}
 	
 	@GET
+	@Path("/professores")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public GenericEntity<List<Usuario>> listaTodosProfessores(){
+		session = HibernateUtil.openSession();
+        usuarioDaoImpl = new UsuarioDaoImpl();
+        List<Usuario> list = usuarioDaoImpl.listProfessor(session);
+		session.close();
+		return new GenericEntity<List<Usuario>>(list) {};
+	}
+	
+	@GET
+	@Path("/alunos")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public GenericEntity<List<Usuario>> listaTodosAlunos(){
+		session = HibernateUtil.openSession();
+        usuarioDaoImpl = new UsuarioDaoImpl();
+        List<Usuario> list = usuarioDaoImpl.listAluno(session);
+		session.close();
+		return new GenericEntity<List<Usuario>>(list) {};
+	}
+	
+	@GET
 	@Path("/usuario")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public GenericEntity<Usuario> pegaPorId(@QueryParam("id") Long id){

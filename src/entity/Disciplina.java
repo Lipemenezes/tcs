@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -29,6 +30,12 @@ public class Disciplina {
 
 	@Column
 	private boolean ativo;
+
+	@OneToOne
+	private Usuario professor;
+
+	@OneToOne
+	private Curso curso;
 
 	public Disciplina() {
 		super();
@@ -72,6 +79,22 @@ public class Disciplina {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Usuario getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Usuario professor) {
+		this.professor = professor;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 	@Override
