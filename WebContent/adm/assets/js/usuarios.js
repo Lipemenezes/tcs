@@ -22,38 +22,23 @@ $(document)
 					$("#frm_usuario")
 							.submit(
 									function() {
-										var json = '{"id": "'
-												+ $("#id").val()
-												+ '","nome": "'
-												+ $("#nome").val()
-												+ '","sobrenome": "'
-												+ $("#sobrenome").val()
-												+ '","senha": "'
-												+ $("#senha").val()
-												+ '", "email": "'
-												+ $("#email").val()
-												+ '", "telefone": "'
-												+ $("#telefone").val()
-												+ '", "nivel": "'
-												+ document
-														.querySelectorAll('input[type=radio]:checked')[0].value;
-										'" }';
-
 										var json = {
 											"id" : $("#id").val(),
 											"nome" : $("#nome").val(),
 											"sobrenome" : $("#sobrenome").val(),
 											"senha" : $("#senha").val(),
 											"email" : $("#email").val(),
-											"telefone" : $("#telefone").val(),
-											"permissao" : document
-													.querySelectorAll('input[type=radio]:checked')[0].value
+											"cpf" : $("#cpf").val(),
+											"permissao" : {
+												"id": document
+												.querySelectorAll('input[type=radio]:checked')[0].value
+											}
 										}
 
 										if ($("#nome").val() === ''
 												|| $("#email").val() === ''
 												|| $("#sobrenome").val() === ''
-												|| $("#telefone").val() === ''
+												|| $("#cpf").val() === ''
 												|| $("#nivel").val() === ''
 												| $("#senha").val() === '') {
 											swal('Ops',
@@ -61,9 +46,8 @@ $(document)
 													'info');
 											return false;
 										} else {
-
 											console.log(json);
-											// cadastrar(json);
+											cadastrar(json);
 										}
 										return false;
 									});
@@ -72,31 +56,31 @@ $(document)
 
 function getJSON() {
 	var url = window.location.search.replace("?", "");
-
+	var xurl = new URL(window.location.href);
+	var urlId = xurl.searchParams.get("id");
 	// MODO EDICAO OU DELETE
 	if (url.indexOf("del") > -1 || url.indexOf("up") > -1) {
-
 		$
 				.ajax(
 						{
-							url : 'http://localhost:8080/projeto-tcs/resources/usuarios/usuario?id=',
+							url : 'http://localhost:8080/projeto-tcs/resources/usuarios/usuario?id='+urlId,
 							type : 'GET'
 						}).always(function(data) {
 					$("#nome").val(data.nome);
 					$("#sobrenome").val(data.sobrenome);
 					$("#senha").val(data.senha);
 					$("#email").val(data.email);
-					$("#telefone").val(data.telefone);
+					$("#cpf").val(data.cpf);
 					$("#id").val(data.id);
 					console.log(data.nivel);
-					switch (data.nivel) {
-					case "1":
+					switch (data.permissao.id) {
+					case 3:
 						$("#adm").prop("checked", true);
 						break;
-					case "2":
+					case 2:
 						$("#prof").prop("checked", true);
 						break;
-					case "3":
+					case 1:
 						$("#aluno").prop("checked", true);
 						break;
 					}
@@ -104,7 +88,6 @@ function getJSON() {
 	}
 	// SE FOR DIFERENTE DE CAD EH LISTAR
 	else if (url.indexOf("cad") > -1 == false) {
-
 		$
 				.getJSON(
 						"http://localhost:8080/projeto-tcs/resources/usuarios/",
@@ -116,9 +99,9 @@ function getJSON() {
 								saida += ' <tr> ';
 								saida += '<td>' + data[j].nome + ' '
 										+ data[j].sobrenome + '</td>'
-								saida += '<td>' + data[j].telefone + '</td>'
+								saida += '<td>' + data[j].cpf + '</td>'
 								saida += '<td>' + data[j].email + '</td>'
-								saida += '<td>' + data[j].tipo + '</td>'
+								saida += '<td>' + data[j].permissao.nome + '</td>'
 								saida += '<td>';
 								saida += '<a href="crud_usuario.html?id='
 										+ data[j].id
@@ -152,13 +135,12 @@ function controleBotoes() {
 	}
 }
 function cadastrar(dados) {
-
+	dados.id = null;
 	$.ajax({
-		url : 'ajax/URL',
+		url : 'http://localhost:8080/projeto-tcs/resources/usuarios/',
 		type : 'POST',
 		contentType : "application/json",
-		data : dados
-
+		data : JSON.stringify(dados)
 	}).always(function(resposta) {
 
 		if (resposta.id) {
@@ -195,7 +177,7 @@ function deletar(dados) {
 										url : 'http://localhost:8080/projeto-tcs/resources/usuarios/',
 										type : 'DELETE',
 										contentType : "application/json",
-										data : dados
+										data : JSON.stringify(dados)
 									})
 							.always(
 									function(resposta) {
