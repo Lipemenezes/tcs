@@ -23,20 +23,18 @@ $(document).ready(
 								"tipo": $("#tipo").val(),
 								"dificuldade": $("#dificuldade").val(),
 								"nome": $("#titulo").val(),
-								"dataEntrega": $("#dtEn").val(),
+								"dataEntrega": $("#dataEntrega").val(),
 								"turma": {
-									"id": 0
+									"id": $("#turma").val()
 								}
 						}
 
 						if ($("#tipo").val() === ''
-								|| $("#dificuldade").val() === ''
-								|| $("#dificuldade").val() === ''
-								|| $("#titulo").val() === ''
-								|| $("#dtIn").val() === ''
-								|| $("#dtEn").val() === ''
-								|| $("#detalhe").val() === ''
-								|| $("#professor").val() === '') {
+							|| $("#dificuldade").val() === ''
+							|| $("#titulo").val() === ''
+							|| $("#dataEntrega").val() === ''
+							|| $("#duracao").val() === ''
+							|| $("#turma").val() === '') {
 							swal('Ops', 'Preencha todos os dados', 'info');
 							return false;
 						} else {
@@ -52,55 +50,53 @@ function getJSON() {
 
 	// MODO EDICAO OU DELETE
 	if (url.indexOf("del") > -1 || url.indexOf("up") > -1) {
-		$
-				.getJSON(
-						"http://localhost:8080/projeto-tcs/resources/disciplinas",
-						function(data) {
-							console.log(data)
-							$("#titulo").val(data.titulo);
-							$("#professor").val(data);
-							$("#dtIn").val(data.dataIn);
-							$("#dtEn").val(data.dataEn);
-							$("#detalhe").val(data.detalhe);
-							$("#id").val(data.id);
-							$('#tipo').val(data.tipo)
-							window.document.getElementById("tipo").value = data.tipo;
-							window.document.getElementById("dificuldade").value = data.dificuldade;
-							comboxSelecionado(data.idProf, data.idDisciplina);
-						});
+		var url = new URL(window.location.href);
+		var urlId = url.searchParams.get("id");
+		$.getJSON(
+			"http://localhost:8080/projeto-tcs/resources/avaliacoes/avaliacao?id=",
+			function(data) {
+				console.log(data)
+				$("#titulo").val(data.nome);
+				$("#dataEntrega").val(data.dataEntrega);
+				$("#turma").val(data.turma.disciplina.nome + ' ' + data.turma.semestre + data.turma.turno);
+				$("#id").val(data.id);
+				$('#tipo').val(data.tipo);
+				$('#dificuldade').val(data.dificuldade);
+				window.document.getElementById("tipo").value = data.tipo;
+				window.document.getElementById("dificuldade").value = data.dificuldade;
+				comboxSelecionado(data.disciplina.id);
+			});
 	}
 	// SE FOR DIFERENTE DE CAD EH LISTAR
 	else if (url.indexOf("cad") > -1 == false) {
-		$
-				.getJSON(
-						"http://localhost:8080/projeto-tcs/resources/avaliacoes",
-						function(data) {
-							var d = data.agenda;
-							var saida = "";
-
-							for (j = 0; j < d.length; j++) {
-								saida += ' <tr> ';
-								saida += '<td>' + d[j].tipo + '</td>';
-								saida += '<td>' + d[j].dificuldade + '</td>';
-								saida += '<td>' + d[j].disciplina + '</td>';
-								saida += '<td>' + d[j].professor + '</td>';
-								saida += '<td>' + d[j].dataIn + '</td>';
-								saida += '<td>' + d[j].dataEn + '</td>';
-								saida += '<td>' + d[j].detalhe.substring(0, 20)
-										+ '[...]</td>';
-
-								saida += '<td>';
-								saida += '<a href="crud_agenda.html?id='
-										+ d[j].id
-										+ '&act=up" class="btn-floating green"><i class="material-icons">edit</i></a>';
-								saida += '<a  href="crud_agenda.html?id='
-										+ d[j].id
-										+ '&act=del"  class="btn-floating red" "><i class="material-icons">delete</i></a>';
-								saida += '</td>';
-								saida += '</tr>';
-							}
-							document.getElementById('agendas').innerHTML = saida;
-						});
+		$.getJSON(
+			"http://localhost:8080/projeto-tcs/resources/avaliacoes",
+			function(data) {
+				var d = data;
+				var saida = "";
+	
+				for (j = 0; j < d.length; j++) {
+					saida += ' <tr> ';
+					saida += '<td>' + d[j].tipo + '</td>';
+					saida += '<td>' + d[j].dificuldade + '</td>';
+					saida += '<td>' + d[j].disciplina + '</td>';
+					saida += '<td>' + d[j].professor + '</td>';
+					saida += '<td>' + d[j].dataEntrega + '</td>';
+					saida += '<td>' + d[j].duracao + '</td>';
+						
+					saida += '<td>';
+					saida += '<a href="crud_agenda.html?id='
+							+ d[j].id
+							+ '&act=up" class="btn-floating green"><i class="material-icons">edit</i></a>';
+					saida += '<a  href="crud_agenda.html?id='
+							+ d[j].id
+							+ '&act=del"  class="btn-floating red" "><i class="material-icons">delete</i></a>';
+					saida += '</td>';
+					saida += '</tr>';
+				}
+				
+				document.getElementById('agendas').innerHTML = saida;
+			});
 	}
 
 }
@@ -124,14 +120,14 @@ function controleBotoes() {
 function cadastrar(dados) {
 
 	$.ajax({
-		url : 'http://localhost:8080/projeto-tcs/resources/disciplinas',
+		url : 'http://localhost:8080/projeto-tcs/resources/avaliacoes',
 		type : 'POST',
 		contentType : "application/json",
 		data : dados
 
 	}).always(function(resposta) {
 
-		if (resposta === 'cadastrado') {
+		if (resposta.id) {
 			swal("OPa!", "Cadastro realizado com sucesso", "success");
 			return false;
 		}
@@ -168,8 +164,8 @@ function deletar(dados) {
 										data : dados
 
 									}).always(function(resposta) {
-								if (resposta === 'deleted') {
-									window.location = "URL_COMPLETA";
+								if (resposta === true) {
+									window.location = "http://localhost:8080/projeto-tcs/index.html";
 									return false;
 								}
 								if (resposta === 'error') {
@@ -195,29 +191,7 @@ function deletar(dados) {
 
 }
 
-function comboxSelecionado(idProf='', idDisciplina='') {
-	$
-			.getJSON("http://localhost:8080/projeto-tcs/resources/usuarios",
-					function(data) {
-						for (i = 0; i < data.length; i++) {
-							$('select').material_select();
-							if (idProf.valueOf() === data[i].id) {
-								$('select[name="professor"]').append(
-										"<option selected value=\""
-												+ data[i].id + "\">"
-												+ data[i].nome
-												+ "</option>");
-							} else {
-								$('select[name="professor"]').append(
-										"<option  value=\""
-												+ data[i].id + "\">"
-												+ data[i].nome + " "
-												+ data[i].sobrenome
-												+ "</option>");
-							}
-						}
-
-					});
+function comboxSelecionado(idDisciplina='') {
 
 	$.getJSON("http://localhost:8080/projeto-tcs/resources/disciplinas",
 			function(data) {

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 /**
  * 
  * @author Felipe Menezes
@@ -31,6 +33,7 @@ public class Avaliacao {
 	private String nome;
 
 	@Temporal(value = TemporalType.DATE)
+	@CreationTimestamp
 	private Date dataCadastro;
 
 	@Temporal(value = TemporalType.DATE)
@@ -41,19 +44,22 @@ public class Avaliacao {
 
 	@Column
 	private boolean ativo;
-	
+
 	@Column
 	private int dificuldade;
 
 	@OneToOne(fetch = FetchType.EAGER)
 	private Turma turma;
 
+	@Column
+	private String tipo;
+
 	public Avaliacao() {
 		super();
 	}
 
 	public Avaliacao(Long id, String nome, Date dataCadastro, Date dataEntrega, Long duracao, boolean ativo,
-			Turma turma) {
+			int dificuldade, Turma turma, String tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -61,7 +67,9 @@ public class Avaliacao {
 		this.dataEntrega = dataEntrega;
 		this.duracao = duracao;
 		this.ativo = ativo;
+		this.dificuldade = dificuldade;
 		this.turma = turma;
+		this.tipo = tipo;
 	}
 
 	public Long getId() {
@@ -118,6 +126,22 @@ public class Avaliacao {
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
+	}
+
+	public int getDificuldade() {
+		return dificuldade;
+	}
+
+	public void setDificuldade(int dificuldade) {
+		this.dificuldade = dificuldade;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

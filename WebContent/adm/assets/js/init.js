@@ -26,4 +26,14 @@ function myJSON(){
   }
   
  });
+  
+  $.getJSON("http://localhost:8080/projeto-tcs/resources/turmas", function(data) {
+	  $('select[name="professor"]').append("<option  value=\"\">Selecione uma turma</option>");
+	  for (i = 0; i < data.length; i++) {
+	         $('select').material_select();
+	         $('select[name="turma"]').append("<option  value=\"" + data[i].id + "\">" + data[i].disciplina.nome +" - "+ data[i].semestre+" - "+data[i].turno + "</option>");
+	      
+	  }
+	  
+	 });
 }

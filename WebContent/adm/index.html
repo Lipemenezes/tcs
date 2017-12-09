@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>{$titulo_app}</title>
+        <title>KALENPRO</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -80,77 +80,59 @@
                         <a href="#!" id="btnFechar" class="right red modal-action modal-close waves-effect waves-green btn-flat">X</a>
 
                     </div>
-                    <div class="card">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <select id="tipo">
+                    <!-- ID DO AGENDA -->
+                    <input type="hidden" name="id" value="" id="id" />
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="tipo" name="tipo">
                                     <option value="" disabled selected>Selecione o tipo</option>
                                     <option value="Prova">Prova</option>
                                     <option value="Trabalho">Trabalho</option>
-                                    <option value="Outro">Outros</option>
-                                </select>
-                                <label>Tipo</label>
-                            </div>
-                            <div class="input-field col s6" >
-                                <select id="dificuldade" >
-                                    <option value="" disabled selected>Selecione a dificuldade</option>
+                            </select>
+                            <label>Tipo</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="dificuldade" name="dificuldade">
+                                   <option value="" disabled selected>Selecione a dificuldade</option>
                                     <option value="1">Fácil</option>
-                                    <option value="2">Mais ou Menos</option>
+                                    <option value="2">Médio</option>
                                     <option value="3">Dificil</option>
-                                </select>
-                                <label>Dificuldade</label>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="input-field col s6">
-
-                                <select id="disciplina" name="disciplina" >
-                                </select>
-                                <label>Disciplia</label>
-                            </div>
-
-                            <div class="input-field col s6">
-                                <select id="professor" name="professor">
-                                </select>
-                                <label>Professor(a)</label>
-                            </div>
-
+                            </select>
+                            <label>Dificuldade</label>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input placeholder="Digite um titulo" id="titulo" type="text" class="validate">
-                                <label for="first_name">Titulo do Trabalho</label>
-                            </div>
 
-
-                        </div>
-
-
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <label for="dtIn">Data de Inicio</label>
-                                <br />
-                                <input type="text" class="datepickerInicio" id="dtIn">
-
-                            </div>
-
-                            <div class="input-field col s6">
-                                <label for="dtEn">Data de Fim</label><br />
-                                <input type="text" class="datepickerFim" id="dtEn">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="detalhe" class="materialize-textarea" data-length="120"></textarea>
-                                <label for="detail">Detalhes</label>
-                            </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="turma" name="turma">
+                                
+                            </select>
+                            <label>Turma</label>
                         </div>
 
                     </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Digite um titulo"  name="titulo" id="titulo" type="text" class="validate">
+                            <label for="titulo">Titulo</label>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="dataEntrega">Data de realização</label><br />
+                            <input type="text" class="datepickerFim" id="dataEntrega" name="dataEntrega">
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Digite a duração"  name="duracao" id="duracao" type="number" class="validate" style="margin-top: 21px">
+                            <label for="duracao">Duração (horas)</label>
+                        </div>
+                    </div>
+                          
                     <div class="card">
                         <div class="row">
                             <div class="input-field col s12">
