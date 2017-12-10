@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -34,6 +35,7 @@ public class Avaliacao {
 
 	@Temporal(value = TemporalType.DATE)
 	@CreationTimestamp
+	@Transient
 	private Date dataCadastro;
 
 	@Temporal(value = TemporalType.DATE)

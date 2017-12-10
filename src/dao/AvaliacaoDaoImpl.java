@@ -24,5 +24,10 @@ public class AvaliacaoDaoImpl extends BaseDaoImpl<Avaliacao, Long> implements Av
 		Query avaliacao = session.createQuery("from Avaliacao");
 		return avaliacao.list();
 	}
+	
+	public List<Avaliacao> listByDisciplina(Session session, Long idDisciplina) throws HibernateException {
+		Query avaliacao = session.createQuery("from Avaliacao av where av.turma.disciplina = " + idDisciplina);
+		return avaliacao.list();
+	}
 
 }

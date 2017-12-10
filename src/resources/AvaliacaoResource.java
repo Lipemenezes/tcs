@@ -1,5 +1,6 @@
 package resources;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -27,13 +28,27 @@ public class AvaliacaoResource {
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public GenericEntity<List<Avaliacao>> listaTodos() {
+	public GenericEntity<List<Avaliacao>> listaTodos(@QueryParam("disciplina") Long idDisciplina, 
+			@QueryParam("startdate") Date startDate, @QueryParam("enddate") Date endDate) {
+		
 		session = HibernateUtil.openSession();
 		avaliacaoDaoImpl = new AvaliacaoDaoImpl();
-		List<Avaliacao> list = avaliacaoDaoImpl.listAll(session);
+		List<Avaliacao> list;
+//		if (startDate != null && endDate != null && idDisciplina != null) {
+//			list = avaliacaoDaoImpl.listAll(session);
+//		} else if (startDate != null && endDate != null) {
+//			list = avaliacaoDaoImpl.listAll(session);
+//		} else 
+		if (idDisciplina != null) {
+			list = avaliacaoDaoImpl.listByDisciplina(session, idDisciplina);		
+		} else {
+			list = avaliacaoDaoImpl.listAll(session);
+		}
+		
 		session.close();
 		return new GenericEntity<List<Avaliacao>>(list) {
 		};
+		
 	}
 
 	@GET

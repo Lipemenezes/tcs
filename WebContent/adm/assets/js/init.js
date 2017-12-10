@@ -35,5 +35,14 @@ function myJSON(){
 	      
 	  }
 	  
-	 });
+   });
+  
+  $.getJSON("http://localhost:8080/projeto-tcs/resources/disciplinas", function(data) {
+	  $('select[name="filter-disciplina"]').append("<option  value=\"\">Selecione uma disciplina</option>");
+	  for (i = 0; i < data.length; i++) {
+	         $('select').material_select();
+	         $('select[name="filter-disciplina"]').append("<option  value=\"" + data[i].id + "\">" + data[i].nome + "</option>");
+	      
+	  }
+   });
 }
