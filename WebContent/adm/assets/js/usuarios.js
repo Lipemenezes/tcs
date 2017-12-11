@@ -137,7 +137,7 @@ function controleBotoes() {
 	}
 }
 function cadastrar(dados) {
-	dados.id = null;
+	delete dados.id;
 	$.ajax({
 		url : 'http://localhost:8080/projeto-tcs/resources/usuarios/',
 		type : 'POST',

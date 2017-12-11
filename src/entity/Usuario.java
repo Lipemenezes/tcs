@@ -1,7 +1,6 @@
 package entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,11 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -29,7 +25,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "usuario")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Usuario {
 
 	private static final long serialVersionUID = 1L;
@@ -59,15 +55,15 @@ public class Usuario {
 	@JoinColumn(name = "permissao_id")
 	private Permissao permissao;
 
-	@ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
-//	@JsonManagedReference
+	@ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	// @JsonManagedReference
 	private List<Turma> turmas = new ArrayList<Turma>();
 
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nome, String sobrenome, String cpf, String email, String senha,
-			boolean ativo, Permissao permissao, List<Turma> turmas) {
+	public Usuario(Long id, String nome, String sobrenome, String cpf, String email, String senha, boolean ativo,
+			Permissao permissao, List<Turma> turmas) {
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;

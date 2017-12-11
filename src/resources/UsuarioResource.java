@@ -86,7 +86,7 @@ public class UsuarioResource {
 		session = HibernateUtil.openSession();
         usuarioDaoImpl = new UsuarioDaoImpl();
         
-        usuarioDaoImpl.delete(usuario, session);
+        usuarioDaoImpl.remove(usuario, session);
         usuario = usuarioDaoImpl.searchById(usuario.getId(), session);
 		session.close();
 		

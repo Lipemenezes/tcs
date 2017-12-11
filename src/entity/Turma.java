@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -48,7 +50,7 @@ public class Turma {
 	@JoinColumn(name = "disciplina_id")
 	private Disciplina disciplina;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@JoinTable(name = "usuario_turma", joinColumns = { @JoinColumn(name = "turma_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "usuario_id") })
 //	@JsonIgnore
