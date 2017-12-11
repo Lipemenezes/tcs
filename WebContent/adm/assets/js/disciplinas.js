@@ -205,7 +205,7 @@ function deletar(dados) {
 	swal(
 			{
 				title : "Você tem certeza?",
-				text : "Está ação ira deletar o contato de emergência",
+				text : "Está ação ira deletar a disciplina selecionada",
 				type : "warning",
 				showCancelButton : true,
 				confirmButtonColor : "#DD6B55",
